@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
+  static const id = "/";
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SplashScreenState();
