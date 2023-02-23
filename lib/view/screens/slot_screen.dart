@@ -137,30 +137,83 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                       color: Colors.black,
                     ),
                   ),
-                  child: ListView.builder(
-                    itemCount: timeProvider.formattedTimeSlot.length,
-                    itemBuilder: ((context, index) {
-                      return Column(
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          //======================================
-                          if (timeProvider.formattedTimeSlot[index]
-                              ["isTomorrow"])
-                            const Text("Going To Next Day"),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(_getFormatedTime(timeProvider
-                                      .formattedTimeSlot[index]["from"]!)
-                                  .toString()),
-                              Text(_getFormatedTime(timeProvider
-                                      .formattedTimeSlot[index]["to"]!)
-                                  .toString()),
-                            ],
+                          Text(
+                            "START",
+                            style: TextStyle(
+                              fontSize: size.width * 0.06,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            "END",
+                            style: TextStyle(
+                              fontSize: size.width * 0.06,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
-                      );
-                      
-                    }),
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: timeProvider.formattedTimeSlot.length,
+                          itemBuilder: ((context, index) {
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                //======================================
+                                if (timeProvider.formattedTimeSlot[index]
+                                    ["isTomorrow"])
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Going To Next Day",
+                                      style: TextStyle(
+                                        fontSize: size.width * 0.04,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        _getFormatedTime(
+                                          timeProvider.formattedTimeSlot[index]
+                                              ["from"]!,
+                                        ).toString(),
+                                        style: TextStyle(
+                                          fontSize: size.width * 0.06,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      Text(
+                                        _getFormatedTime(timeProvider
+                                                    .formattedTimeSlot[index]
+                                                ["to"]!)
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: size.width * 0.06,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
+                          }),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               )
