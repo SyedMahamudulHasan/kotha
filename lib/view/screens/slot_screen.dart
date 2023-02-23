@@ -68,18 +68,24 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                   ),
                   SizedBox(width: size.width * 0.04),
                   SizedBox(
-                      width: size.width * 0.26,
-                      height: size.width * 0.12,
-                      child: TextFormField(
-                        controller: _durationCtr,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          enabledBorder: inputBorder(),
-                          focusedBorder: inputBorder(),
-                        ),
-                      ))
+                    width: size.width * 0.26,
+                    height: size.width * 0.12,
+                    child: TextFormField(
+                      controller: _durationCtr,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        enabledBorder: inputBorder(),
+                        focusedBorder: inputBorder(),
+                      ),
+                      onFieldSubmitted: (value) {
+                        print(value);
+                      },
+                    ),
+                  )
                 ],
               ),
+              //===================================>>> slots input field
               SizedBox(height: size.height * 0.02),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -93,18 +99,35 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                   ),
                   SizedBox(width: size.width * 0.04),
                   SizedBox(
-                      width: size.width * 0.26,
-                      height: size.width * 0.12,
-                      child: TextFormField(
-                        controller: _slotCtr,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          enabledBorder: inputBorder(),
-                          focusedBorder: inputBorder(),
-                        ),
-                      ))
+                    width: size.width * 0.26,
+                    height: size.width * 0.12,
+                    child: TextFormField(
+                      controller: _slotCtr,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        enabledBorder: inputBorder(),
+                        focusedBorder: inputBorder(),
+                      ),
+                      onFieldSubmitted: (value) {
+                        print(value);
+                      },
+                    ),
+                  )
                 ],
               ),
+//=================================>> list of time slot
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.all(24),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
