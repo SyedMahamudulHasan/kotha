@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kotha/model/utils/constant.dart';
+import 'package:kotha/view/screens/slot_screen.dart';
 import 'package:kotha/view/widgets/custom_appbar.dart';
 
 class DashScreen extends ConsumerStatefulWidget {
@@ -41,7 +42,9 @@ class _SplashScreenState extends ConsumerState<DashScreen> {
                 children: [
                   //-============================>>> slots button
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, SlotScreen.id);
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: KColor.secondaryColor,
                         padding:
@@ -56,7 +59,7 @@ class _SplashScreenState extends ConsumerState<DashScreen> {
                         ),
                       )),
                   //============================>>> home button
-                  GestureDetector(
+                  InkWell(
                     onTap: () {},
                     child: Container(
                       height: size.height * 0.055,

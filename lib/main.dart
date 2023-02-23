@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kotha/view/screens/dash_screen.dart';
+import 'package:kotha/view/screens/slot_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         initialRoute: DashScreen.id,
         routes: {
           DashScreen.id: (context) => const DashScreen(),
+          SlotScreen.id: (context) => const SlotScreen(),
         });
   }
 }
