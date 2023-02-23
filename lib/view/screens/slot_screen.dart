@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:kotha/controller/time_slots_provider.dart';
 import 'package:kotha/view/widgets/custom_appbar.dart';
 
 class SlotScreen extends ConsumerStatefulWidget {
@@ -35,9 +36,14 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
     return DateFormat.jm().format(currentTime!);
   }
 
+  _getFormatedTime(DateTime time) {
+    return DateFormat.jm().format(time);
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final timeProvider = ref.watch(timeSlotProvider);
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -110,7 +116,11 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                         focusedBorder: inputBorder(),
                       ),
                       onFieldSubmitted: (value) {
-                        print(value);
+                        if (_durationCtr!.text.isNotEmpty) {
+                          ref.read(timeSlotProvider.notifier).setTmeSlotList(
+                              int.parse(_durationCtr!.text),
+                              int.parse(_slotCtr!.text));
+                        }
                       },
                     ),
                   )
@@ -126,6 +136,21 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                       color: Colors.black,
                     ),
                   ),
+                  child: ListView.builder(
+                      itemCount: timeProvider.formatedTimeSlot.length,
+                      itemBuilder: ((context, index) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(_getFormatedTime(timeProvider
+                                    .formatedTimeSlot[index]["from"]!)
+                                .toString()),
+                            Text(_getFormatedTime(
+                                    timeProvider.formatedTimeSlot[index]["to"]!)
+                                .toString()),
+                          ],
+                        );
+                      })),
                 ),
               )
             ],
