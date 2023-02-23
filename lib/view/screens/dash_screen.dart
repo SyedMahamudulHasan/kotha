@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kotha/model/utils/constant.dart';
+import 'package:kotha/view/widgets/custom_appbar.dart';
 
 class DashScreen extends ConsumerStatefulWidget {
   const DashScreen({super.key});
@@ -20,20 +21,8 @@ class _SplashScreenState extends ConsumerState<DashScreen> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Image.asset("assets/logo/logo.png"),
-                  const SizedBox(width: 8),
-                  Text(
-                    "TTIME",
-                    style: TextStyle(
-                      color: KColor.secondaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: size.width * 0.06,
-                    ),
-                  )
-                ],
-              ),
+              // appbar
+              CustomAppBar(size: size),
               SizedBox(height: size.height * 0.1),
               Center(child: Image.asset("assets/image/splash.png")),
               Text(
