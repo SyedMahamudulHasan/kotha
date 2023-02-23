@@ -4,7 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class TimeSlotNotifier extends ChangeNotifier {
   List<DateTime> timeSlotList = [];
   List<Map<String, dynamic>> formattedTimeSlot = [];
-  bool nextDayFlag = false;
+  bool nextDayFlag =
+      false; // this flag value will be true once a time this will handle the repeated go to next day issus
 
   setTmeSlotList(int duration, int slot) {
     final now = DateTime.now();
@@ -32,7 +33,6 @@ class TimeSlotNotifier extends ChangeNotifier {
   }
 
   getTimeSlot() {
-    print("=========>>lenght ${timeSlotList.length}");
     for (int i = 0; i < timeSlotList.length; i++) {
       if (i == 0) {
         //check if the date time is tomorrow.
@@ -52,6 +52,7 @@ class TimeSlotNotifier extends ChangeNotifier {
         }
       } else {
         if (calculateDifference(timeSlotList[i]) != 0 && !nextDayFlag) {
+          nextDayFlag = true;
           formattedTimeSlot.add({
             "from": timeSlotList[i - 1],
             "to": timeSlotList[i],
