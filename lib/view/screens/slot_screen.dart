@@ -79,14 +79,12 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                     child: TextFormField(
                       controller: _durationCtr,
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         enabledBorder: inputBorder(),
                         focusedBorder: inputBorder(),
                       ),
-                      onFieldSubmitted: (value) {
-                        print(value);
-                      },
                     ),
                   )
                 ],
@@ -120,6 +118,9 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                           ref.read(timeSlotProvider.notifier).setTmeSlotList(
                               int.parse(_durationCtr!.text),
                               int.parse(_slotCtr!.text));
+                          //clean the text controller
+                          _durationCtr!.clear();
+                          _slotCtr!.clear();
                         }
                       },
                     ),
@@ -137,20 +138,30 @@ class _SlotScreenState extends ConsumerState<SlotScreen> {
                     ),
                   ),
                   child: ListView.builder(
-                      itemCount: timeProvider.formatedTimeSlot.length,
-                      itemBuilder: ((context, index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(_getFormatedTime(timeProvider
-                                    .formatedTimeSlot[index]["from"]!)
-                                .toString()),
-                            Text(_getFormatedTime(
-                                    timeProvider.formatedTimeSlot[index]["to"]!)
-                                .toString()),
-                          ],
-                        );
-                      })),
+                    itemCount: timeProvider.formattedTimeSlot.length,
+                    itemBuilder: ((context, index) {
+                      return Column(
+                        children: [
+                          //======================================
+                          if (timeProvider.formattedTimeSlot[index]
+                              ["isTomorrow"])
+                            const Text("Going To Next Day"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(_getFormatedTime(timeProvider
+                                      .formattedTimeSlot[index]["from"]!)
+                                  .toString()),
+                              Text(_getFormatedTime(timeProvider
+                                      .formattedTimeSlot[index]["to"]!)
+                                  .toString()),
+                            ],
+                          ),
+                        ],
+                      );
+                      
+                    }),
+                  ),
                 ),
               )
             ],
