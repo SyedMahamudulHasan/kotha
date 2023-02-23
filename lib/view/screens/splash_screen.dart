@@ -9,9 +9,18 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class _SplashScreenState extends ConsumerState<SplashScreen> {
-
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset("assets/logo/logo.png"),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
