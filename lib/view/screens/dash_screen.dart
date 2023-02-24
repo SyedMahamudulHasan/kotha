@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kotha/model/utils/constant.dart';
+import 'package:kotha/view/screens/home_screen.dart';
 import 'package:kotha/view/screens/slot_screen.dart';
 import 'package:kotha/view/widgets/custom_appbar.dart';
 
@@ -60,7 +61,9 @@ class _SplashScreenState extends ConsumerState<DashScreen> {
                       )),
                   //============================>>> home button
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, HomeScreen.id);
+                    },
                     child: Container(
                       height: size.height * 0.055,
                       width: size.width * 0.45,

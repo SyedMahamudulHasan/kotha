@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kotha/view/screens/dash_screen.dart';
+import 'package:kotha/view/screens/home_screen.dart';
 import 'package:kotha/view/screens/slot_screen.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         routes: {
           DashScreen.id: (context) => const DashScreen(),
           SlotScreen.id: (context) => const SlotScreen(),
+          HomeScreen.id: (context) => const HomeScreen()
         });
   }
 }
